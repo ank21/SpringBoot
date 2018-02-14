@@ -24,3 +24,5 @@ hs_err_pid*
 /todowebapp/target
 /Todoapp/taget
 
+/.metadata/
+/.recommenders/
