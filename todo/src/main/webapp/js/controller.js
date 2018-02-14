@@ -1,24 +1,47 @@
+
 var app = angular.module("app", []);
 
-app.controller("ctrl", function($scope, $http) {
 
-	$scope.refresh = function(fil) {
-		$http.get("/todo/get/" + fil).success(function(data) {
-			$scope.todoItem = data
-		}).error(function() {
+
+app.controller("ctrl", function($scope, $http) {
+	$scope.fkey = "normal"
+	$scope.refresh = function() {
+		
+		
+		$http({
+
+			url : "/todo/get",
+			method : "GET",
+			params : {
+				"filter" : $scope.fkey
+			}
+
+		}).then(function(response) {
+			
+			$scope.todoItem = response.data;
+			
+			
+		}, function(error) {
 			alert("error")
-		})
+		});
+		
+		
+		
 	}
+	
+	
 	$scope.filter = function(fil) {
-		$scope.refresh(fil);
+
+		$scope.fkey = fil;
+		$scope.refresh();
 	}
 	$scope.add = function() {
 
 		var todo = $("#datepicker1").datepicker({
-			dateFormat : 'dd/mm/yyyy'
+			dateFormat : 'yyyy/mm/dd'
 		}).val();
 		var duedate = $("#datepicker2").datepicker({
-			dateFormat : 'dd/mm/yyyy'
+			dateFormat : 'yyyy/mm/dd'
 		}).val();
 		var data = JSON.stringify({
 			todoList : [ {
@@ -35,7 +58,7 @@ app.controller("ctrl", function($scope, $http) {
 
 		function(response) {
 
-			$scope.refresh("normal");
+			$scope.refresh();
 		}, function(err) {
 			alert("error")
 		})

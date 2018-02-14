@@ -1,6 +1,7 @@
 package com.todo.repository;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,5 @@ import com.todo.model.TodoItem;
 @Repository
 public interface TodoItemRepository extends JpaRepository<TodoItem,String>{
 
-	List<TodoItem> findByTodoDate(String dt);
+	List<TodoItem> findByTodoDate(Date dt);
 }

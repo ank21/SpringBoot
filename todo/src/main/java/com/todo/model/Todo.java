@@ -2,6 +2,8 @@ package com.todo.model;
 
 
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +22,7 @@ public class Todo {
 	 @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer todoId;
 	private String taskName;
-	private String dueDate;
+	private Date dueDate;
 	private String status;
 	private String todoType;
 
@@ -37,11 +39,11 @@ public class Todo {
 		this.todoType = todoType;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(String dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 

@@ -1,5 +1,6 @@
 package com.todo.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,12 @@ public class TodoItemService {
 	@Autowired 
 	TodoItemRepository todoRepository;
 	
-	public TodoItem getalltodo(String date){
-		return todoRepository.findOne(date);
-	}
+	
 	public List<TodoItem> get(){
 		return todoRepository.findAll();
 	}
 	
-	public List<TodoItem> findby(String d) {
+	public List<TodoItem> findby(Date d) {
 		return todoRepository.findByTodoDate(d);
 	}
 	

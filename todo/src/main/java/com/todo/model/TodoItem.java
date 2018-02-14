@@ -1,6 +1,7 @@
 package com.todo.model;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ public class TodoItem {
 	
 	private List<Todo> todoList;
 
-	private String todoDate;
+	private Date todoDate;
 
 	public Integer getTodoItemId() {
 		return todoItemId;
@@ -40,11 +41,11 @@ public class TodoItem {
 		this.todoList = todoList;
 	}
 
-	public String getTodoDate() {
+	public Date getTodoDate() {
 		return todoDate;
 	}
 
-	public void setTodoDate(String todoDate) {
+	public void setTodoDate(Date todoDate) {
 		this.todoDate = todoDate;
 	}
 
