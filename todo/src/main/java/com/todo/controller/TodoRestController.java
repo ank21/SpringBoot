@@ -97,5 +97,12 @@ public class TodoRestController {
 		return lt;
 
 	}
+	
+	
+	@GetMapping("/update")
+	void update(@RequestParam("id") Integer id,@RequestParam("value") String value){
+		System.out.println("got he request"+id+value);
+		todorepo.update(id, value);
+	}
 
 }

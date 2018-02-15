@@ -20,8 +20,8 @@ public interface TodoRepository extends JpaRepository<Todo,String>{
 	
 	@Modifying
 	@Transactional
-	@Query("update Todo u set u.status= ?2 where u.taskName= ?1")
-	void update(String task,String status);
+	@Query("update Todo u set u.status= ?2 where u.todoId= ?1")
+	void update(Integer id,String status);
 	
 	
 	

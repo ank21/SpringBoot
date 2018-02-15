@@ -19,13 +19,11 @@ app.controller("ctrl", function($scope, $http) {
 		}).then(function(response) {
 			
 			$scope.todoItem = response.data;
-			
+			console.log($scope.todoItem);
 			
 		}, function(error) {
 			alert("error")
 		});
-		
-		
 		
 	}
 	
@@ -53,7 +51,7 @@ app.controller("ctrl", function($scope, $http) {
 			todoDate : todo
 		});
 
-		console.log(data);
+		
 		$http.post("/todo/pdata", data).then(
 
 		function(response) {
@@ -63,5 +61,30 @@ app.controller("ctrl", function($scope, $http) {
 			alert("error")
 		})
 	}
+	
+$(document).on('click','body .table .update',function(){
+		
+		var t=$('#se').click().val()
+		var a=$(this).closest("tr").find("td:eq(2)").html(t);
+		var id=$(this).closest("tr").find("td:eq(4) button").attr('id');
+		
+		$http({
+
+			url : "/todo/update",
+			method : "GET",
+			params :{
+				"id": id,
+				"value": t
+			}
+		}).then(function(response) {
+			console.log(t);
+			$scope.refresh();
+			
+		}, function(error) {
+			alert("error")
+		});
+		
+		
+	})
 
 });
