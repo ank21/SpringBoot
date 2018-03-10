@@ -1,0 +1,30 @@
+body{
+	/* background-color: lightblue; */
+background:url('../image/118121435.jpg');
+background-attachment:fixed;
+
+ 
+}
+.overlay{
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+ 
+ }
+ .table{
+ 
+ 	
+  	color:white;
+    font-family: "Times New Roman", Times, serif;
+}
+h4,table,th{
+	color:orange;
+}
+label{
+	
+	color:rgb(249, 211, 256);
+}

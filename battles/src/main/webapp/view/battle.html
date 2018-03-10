@@ -1,0 +1,134 @@
+<html ng-app="app">
+<script type="text/javascript" src="/webjars/angularjs/1.6.6/angular.js"></script>
+<script type="text/javascript"
+	src="/webjars/angularjs/1.6.6/angular-resource.min.js"></script>
+<script src="/js/battlecontroller.js"></script>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script src="/js/jquery.js">
+	
+</script>
+<style>
+p {
+	font-weight: bold;
+	color: rgb(41, 32, 0);
+}
+
+h4 {
+	color: Tomato;
+}
+.form-control{
+
+}
+</style>
+<head>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<!-- <div class="navbar-header">
+				//<a class="navbar-brand" href="#">Westeros at war! </a>
+			</div> -->
+	<ul class="navbar-nav">
+		<li class="nav-item active"><a class="nav-link" href="#">Battles</a>
+		</li>
+		<li class="nav-item"><a class="nav-link" href="/king">Kings</a></li>
+		<!--    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li> -->
+
+	</ul>
+</nav>
+</head>
+
+<body ng-controller="ctrl" ng-init="refresh()">
+	<div class="container">
+
+		<!-- The Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">King</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<p>King's Name:{{name}}</p>
+						<p>Battle_won:{{battle_won}}</p>
+						<p>Battle_lost:{{battle_lost}}</p>
+						<p>Ratting:{{ratting}}</p>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<button id="fbutton" type="button" class="btn btn-secondary">
+			<span class="glyphicon glyphicon-filter"></span> Filter
+		</button>
+		
+
+		<div id="filters">
+			<br>
+			<div class="col-3">
+				<input  type="text" class="form-control" ng-model="battle"
+					placeholder="Search By Battle"> <br> 
+			<input class="form-control"  type="text" size="35" ng-model="king"
+					placeholder="Search By King">
+			</div>
+			<p>Battle Type:</p>
+			<div class="btn-group">
+						<button type="button" class="btn btn-primary"
+							ng-click="filter('pitched battle')">Pitched</button>
+						<button type="button" class="btn btn-primary"
+							ng-click="filter('ambush')">Ambush</button>
+						<button type="button" class="btn btn-primary"
+							ng-click="filter('siege')">Siege</button>
+						<button type="button" class="btn btn-primary"
+							ng-click="filter('razing')">Razing</button>
+					</div>
+		</div>
+		<br>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Battle</th>
+					<th>Attacker King</th>
+					<th>Defender King</th>
+					<th>Year</th>
+					<th>Attacker_Outcome</th>
+					<th>Battle_type</th>
+					<th>Location</th>
+					<th>Region</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in list | filter:battle | filter:king">
+					<td>{{x.name}}</td>
+					<td><button type="button" ng-click="detail(x.attacker_king)"
+							class="btn btn-link" data-toggle="modal" data-target="#myModal">{{x.attacker_king}}</button></td>
+					<td><button type="button" ng-click="detail(x.defender_king)"
+							class="btn btn-link" data-toggle="modal" data-target="#myModal">{{x.defender_king}}</button></td>
+					<td>{{x.year}}</td>
+					<td>{{x.attacker_outcome}}</td>
+					<td>{{x.battle_type}}</td>
+					<td>{{x.location}}</td>
+					<td>{{x.region}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+
+</html>
