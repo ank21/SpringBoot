@@ -2,7 +2,6 @@
 <html>
 <head>
 
-
 <script type="text/javascript"
 	src="./webjars/angularjs/1.6.6/angular.js"></script>
 <script type="text/javascript"
@@ -52,13 +51,13 @@
 					<span class="glyphicon glyphicon-plus"></span>
 				</button>
 				<br> <br>
-				<button id="fbutton" type="button" class="btn btn-inf btn-sm">
+				<button id="fbutton" type="button" ng-click="rmfilter()" class="btn btn-inf btn-sm">
 					<span class="glyphicon glyphicon-filter"></span> Filter
 				</button>
 				<br> <br>
-				<div class="container" id="filter">
+				<div class="container"  ng-show="disfilter" id="filter">
 					<div class="btn-group">
-						<button type="button" class="btn btn-primary"
+						<button type="button"  class="btn btn-primary"
 							ng-click="filter('Personal')">Personal</button>
 						<button type="button" class="btn btn-primary"
 							ng-click="filter('Work')">Work</button>
@@ -134,32 +133,33 @@
 						<th align="left" width="60%"></th>
 						<th align="left" width="10%">Due Date</th>
 						<th align="left" width="10%">Status</th>
-						<th  align="left" width="7%"></th>
-						<th align="left" width="7%"></th>
+						<th align="left" width="10%"></th>
+						<th align="left" width="10%"></th>
 					</tr>
 					<table class="table" data-ng-repeat="row in todoItem">
 
 						<tr>
-							<td colspan="3">{{row.todoDate}}</td>
+							<td colspan="3"  style="color:DodgerBlue; font-weight: bold" >{{row.todoDate}}</td>
 						</tr>
 
 						<tbody class="tbody">
-							<tr 
-								data-ng-repeat="col in row.todoList   | filter:searchtxt">
+							<tr data-ng-repeat="col in row.todoList   | filter:searchtxt">
 								<td id={{col.taskName}} align="left" width="60%">{{col.taskName}}</td>
 								<td align="left" width="10%">{{col.dueDate}}</td>
 								<td class="st" align="left" width="10%">{{col.status}}</td>
-								<td class="edit" align="left" width="5%">
-								
-								<button  class="bbt" >
-									<span class="glyphicon glyphicon-pencil" style="color:red">Edit</span>
-								</button>
+
+								<td class="edit" align="left" width="10%">
+
+									<button class="bbt">
+										<span class="glyphicon glyphicon-pencil" style="color: red">Edit</span>
+									</button>
 								</td>
-								<td align="left"  class="update" width="2%">
-								<button id={{col.todoId}}>
-									<span class="glyphicon glyphicon-ok" style="color:green">UPDATE</span>
-								</button>
-								
+
+								<td align="left" class="update" width="10%">
+									<button id={{col.todoId}}>
+										<span class="glyphicon glyphicon-ok" style="color: green">UPDATE</span>
+									</button>
+
 								</td>
 							</tr>
 						</tbody>
@@ -170,7 +170,7 @@
 					</table>
 
 				</table>
-				
+
 			</div>
 		</div>
 

@@ -8,10 +8,10 @@ $(document).ready(function() {
 		dateFormat : 'yy-mm-dd'
 	});
 
-	$("#filter").hide();
+/*	$("#filter").hide();
 	$("#fbutton").click(function() {
 		$("#filter").toggle()
-	});
+	});*/
 	
 	$(document).on('click','body .table .tbody .edit',function(){
 		
