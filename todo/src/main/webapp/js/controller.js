@@ -1,9 +1,10 @@
 var app = angular.module("app", []);
 
-app.controller("ctrl", function($scope, $http) {
+app.controller("ctrl", function($scope, $q,$http) {
 	$scope.fkey = "normal"
 	$scope.disfilter = false;
 	$scope.refresh = function() {
+		console.log("insdiete get");
 
 		$http({
 
@@ -50,6 +51,7 @@ app.controller("ctrl", function($scope, $http) {
 	}
 	$scope.add = function() {
 
+		alert("HIII");
 		var todo = $("#datepicker1").datepicker({
 			dateFormat : 'yyyy/mm/dd'
 		}).val();
@@ -69,7 +71,7 @@ app.controller("ctrl", function($scope, $http) {
 		$http.post("/todo/pdata", data).then(
 
 		function(response) {
-
+			alert("done");
 			$scope.refresh();
 		}, function(err) {
 			alert("error")
@@ -99,7 +101,11 @@ app.controller("ctrl", function($scope, $http) {
 		});
 
 	})
-
+	
+	$(document).on('click','body .table .remove',function(){
+		
+		var id=$(this).closest("tr".find("td:eq("))
+	})
 	$scope.rmfilter = function() {
 
 		if ($scope.disfilter == false) {
@@ -110,5 +116,72 @@ app.controller("ctrl", function($scope, $http) {
 			$scope.disfilter = false;
 		}
 	}
+	function add(a){
+		console.log(a);
+		return a;
+	}
+	var te=$scope.fkey;
+	
+	   function utilsService($q, appUtil) {
+		   console.log("innnnn");
+	        function transformHttpPromise(promise) {
+	            var deferred = $q.defer();
+
+	            promise = $q.when(promise);
+
+	            promise
+	                .then(function (data) {
+	                    var result = data.data;
+	                    console.log(result);
+	                   
+	                        deferred.resolve(result.data);
+	                    } );
+
+	            return deferred.promise;
+	        }
+	   }
+	
+	function get(){
+		
+		
+		return $http.get('./test')
+				.then(utilsService.transformHttpPromise)
+				
+		//alert("hello");
+		}
+	
+	
+	function asyncGreet(name) {
+		var a="a"
+		  var deferred = $q.defer();
+			if(a=="b"){
+				deferred.resolve('Hello, ' + name ); 
+			}
+		
+		      deferred.reject('error, ' + name + '!');
+		    
+		  return deferred.promise;
+	}
+
+	
+	
+	function ss(da){console.log(da)}
+	
+	function ee(err){console.log(err)}
+	
+	$scope.test=function(){
+		
+		console.log("inside the function");
+		get().then(add);
+		asyncGreet("ankit").then(ss,ee)
+		
+	}
+	
+	function init(){
+		console.log("inside the init");
+		$scope.refresh();
+	}
+	
+	init();
 
 });
